@@ -108,15 +108,28 @@ using add_cv_t = typename add_cv<T>::type;
 
 
 
+template <typename T>
+struct is_lvalue_reference : false_type {};
 
 template <typename T>
-struct is_reference : false_type {};
+struct is_lvalue_reference<T&> : true_type {};
 
 template <typename T>
-struct is_reference<T&> : true_type {};
+using is_lvalue_reference_t = typename is_lvalue_reference<T>::type;
+
 
 template <typename T>
-struct is_reference<T&&> : true_type {};
+struct is_rvalue_reference : false_type {};
+
+template <typename T>
+struct is_rvalue_reference<T&&> : true_type {};
+
+template <typename T>
+using is_rvalue_reference_t = typename is_rvalue_reference<T>::type;
+
+
+
+
 
 template <typename T>
 struct remove_reference
@@ -157,8 +170,6 @@ struct add_rvalue_reference
 
 template <typename T>
 using add_rvalue_reference_t = typename add_rvalue_reference<T>::type;
-
-
 
 
 
