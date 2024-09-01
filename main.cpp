@@ -20,10 +20,9 @@ constexpr bool p(int x)
 
 int main()
 {
-
 	cocobolo::conditional_t<p(-9), int, double> c = 5.3;
 
-	foo<false>();
+	foo<true>();
 
 	return 0;
 }
