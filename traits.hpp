@@ -182,6 +182,23 @@ using conditional_t = typename conditional<val, T, U>::type;
 
 
 
+template <typename T>
+struct is_class : std::bool_constant<__is_class(T)> {};
+
+template <typename T>
+static constexpr bool is_class_v = is_class<T>::value;
+
+
+template <bool val, typename T = void>
+struct enable_if {};
+
+template <typename T>
+struct enable_if<true, T>
+{
+	using type = T;
+};
+
+
 
 
 
