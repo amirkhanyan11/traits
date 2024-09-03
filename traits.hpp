@@ -6,7 +6,7 @@
 #include <type_traits>
 
 
-namespace cocobolo
+namespace og
 {
 
 using std::false_type, std::true_type;
@@ -208,6 +208,65 @@ struct enable_if<true, T>
 {
 	using type = T;
 };
+
+
+
+
+
+template <typename T>
+concept integral = requires (T ob, T* ptr, void f(T)) 
+{
+    ptr + ob;
+    static_cast<char>(ob);
+    f(0);
+};
+
+template<typename T>
+struct is_integral : false_type {};
+
+template<integral T>
+struct is_integral<T> : true_type {};
+
+
+template<typename T>
+static constexpr bool is_integral_v = is_integral<T>::value;
+
+
+
+
+template <typename T>
+concept polymorphic = requires (T* ptr)
+{
+	dynamic_cast<void*>(ptr);
+};
+
+
+template <typename T>
+struct is_polymorphic : false_type {};
+
+template <polymorphic T>
+struct is_polymorphic<T> : true_type {};
+
+
+
+template <typename T>
+static constexpr bool is_polymorphic_v = is_polymorphic<T>::value;
+
+
+
+
+
+template <typename T>
+struct is_array : false_type {};
+
+template <typename T>
+struct is_array<T[]> : true_type {};
+
+template <size_t N, typename T>
+struct is_array<T[N]> : true_type {};
+
+template <typename T>
+static constexpr bool is_array_v = is_array<T>::value;
 
 
 
