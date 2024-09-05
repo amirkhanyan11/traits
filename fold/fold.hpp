@@ -30,6 +30,12 @@ template <InputRange range, class F>
 constexpr auto fold_left_first(range&& R, F f);
 
 
+template <typename BiDirIt, class T, class F>
+constexpr auto fold_right(BiDirIt first, BiDirIt last, T init, F f);
+
+template <InputRange range, class T, class F>
+constexpr auto fold_right(range&& R, T init, F f);
+
 }
 
 
