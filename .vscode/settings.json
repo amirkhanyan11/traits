@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*.tpp": "cpp",
 		"type_traits": "cpp",
 		"__bit_reference": "cpp",
 		"__functional_base": "cpp",
@@ -20,6 +21,15 @@
 		"tuple": "cpp",
 		"vector": "cpp",
 		"typeinfo": "cpp",
-		"__config": "cpp"
+		"__config": "cpp",
+		"cwchar": "cpp",
+		"exception": "cpp",
+		"initializer_list": "cpp",
+		"iosfwd": "cpp",
+		"istream": "cpp",
+		"new": "cpp",
+		"ostream": "cpp",
+		"stdexcept": "cpp",
+		"streambuf": "cpp"
 	}
 }
